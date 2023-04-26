@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function getData() {
   const res = await fetch("https://dummyjson.com/products");
   // The return value is *not* serialized
@@ -17,8 +19,10 @@ export default async function Page() {
   return (
     <div>
       <ul>
-        {data?.products.map((products) => (
-          <li key={products.id}>{products.title}</li>
+        {data?.products.map((products: any) => (
+          <li key={products.id}>
+            <Link href={`posts/${products.id}`}>{products.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
